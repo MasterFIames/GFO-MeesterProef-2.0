@@ -1,6 +1,7 @@
 package com.gfo.gfo_meesterproef.User;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gfo.gfo_meesterproef.Admin.ViewFileActivity;
+import com.gfo.gfo_meesterproef.Admin.ViewGroupActivity;
 import com.gfo.gfo_meesterproef.R;
 
 import java.util.ArrayList;
@@ -59,9 +62,10 @@ public class FetchGroupActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 TextView textView = (TextView) viewClicked;
                 selectedGroup = textView.getText().toString();
-
-                Toast.makeText(FetchGroupActivity.this,
-                        selectedGroup, Toast.LENGTH_LONG).show();
+//                start FetchFileActivity
+                Intent i = new Intent(FetchGroupActivity.this, FetchFileActivity.class);
+                i.putExtra("userGroup", selectedGroup);
+                startActivity(i);
             }
         });
     }
