@@ -26,15 +26,32 @@
         android:layout_height="wrap_content"
         android:hint="Email"/>
 
-    <EditText
-        android:id="@+id/editTextAdmin"
+    <CheckBox
+        android:id="@+id/CheckboxAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Adminflag"/>
+        android:text="Admin"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addUser"
         android:text="Create"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:onClick="reset"
+        android:text="Reset"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 </LinearLayout>
