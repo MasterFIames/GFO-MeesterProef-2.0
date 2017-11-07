@@ -47,8 +47,8 @@ public class ViewGroupBackgroundWorker extends AsyncTask<String, Void, List<Stri
                 while ((line = bufferedReader.readLine()) != null) {
                     result += line;
                 }
-//                split result at spaces into array
-                splitResultArray = result.split("\\s+");
+//                split result at , into array
+                splitResultArray = result.split(",");
                 splitResultList = (Arrays.asList(splitResultArray));
 
                 bufferedReader.close();
