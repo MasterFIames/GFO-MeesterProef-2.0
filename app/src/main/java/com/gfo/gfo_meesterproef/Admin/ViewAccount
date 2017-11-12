@@ -1,47 +1,31 @@
-package com.gfo.gfo_meesterproef.Admin;
-
-import android.app.AlertDialog;
-import android.content.Context;
-import android.os.AsyncTask;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-
-public class ViewAccountBackgroundWorker extends AsyncTask<String, Void, String> {
-
-    Context context;
-    AlertDialog alertDialog;
-
-    ViewAccountBackgroundWorker(Context ctx) {
+(Context ctx) {
         context = ctx;
     }
 
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String view_url = "https://mantixcloud.nl/gfo/viewusers.php";
+        String view_url = "https://mantixcloud.nl/gfo/viewusername.php";
+        String result = null;
         if (type.equals("view")) {
             try {
+//                connect to database
                 URL url = new URL(view_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
+//                receive data
                 InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                result="";
+                String line="";
+                while((line = bufferedReader.readLine())!= null) {
                     result += line;
                 }
                 bufferedReader.close();
                 inputStream.close();
+
                 httpURLConnection.disconnect();
                 return result;
             } catch (MalformedURLException e) {
@@ -50,16 +34,13 @@ public class ViewAccountBackgroundWorker extends AsyncTask<String, Void, String>
                 e.printStackTrace();
             }
         }
-
-        return null;
-
+        return result;
     }
 
     @Override
-    protected void onPreExecute() { }
+    protected void onPreExecute() {}
 
     @Override
-    protected void onPostExecute(String result) { }
+    protected void onPostExecute(String result) {}
 
 }
-
